@@ -5,7 +5,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
 def load_model():
-    model = cv2.dnn.readNetFromTensorflow(str(BASE_DIR / "frozen_inference_graph.pb"), str(BASE_DIR / "graph.pbtxt"))
+    model_path = str(BASE_DIR / "frozen_inference_graph.pb")
+    config_path = str(BASE_DIR / "graph.pbtxt")
+    if hasattr(cv2.dnn, "readNetFromTensorflow"):
+        model = cv2.dnn.readNetFromTensorflow(model_path, config_path)
+    else:
+        model = cv2.dnn.readNet(model_path, config_path)
     with open(str(BASE_DIR / "object_detection_classes_coco.txt"), "r") as f:
         class_names = f.read().split("\n")
     COLORS = np.random.uniform(2, 255, size=(len(class_names), 3))
