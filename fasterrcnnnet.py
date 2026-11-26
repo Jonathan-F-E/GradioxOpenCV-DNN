@@ -60,5 +60,5 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img):
         label = f"{classes[class_ids[i]]}: {confs[i]:.2f}"
         color = colors[class_ids[i]]
         cv2.rectangle(img, (x, y), (w, h), color, 2)
-        cv2.putText(img, label, (x, y - 5), font, .85, color, 1)
+        cv2.putText(img, label, (x, y - 5), font, .9, color, 1.3)
     return img
