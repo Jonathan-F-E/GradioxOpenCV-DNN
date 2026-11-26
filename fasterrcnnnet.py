@@ -43,7 +43,7 @@ def get_box_dimensions(outputs, height, width):
     for detection in outputs[0, 0, :, :]:
         score = float(detection[2])
         class_id = int(detection[1])
-        if score > 0.3:
+        if score > 0.5:
             w = int(detection[5] * width)
             h = int(detection[6] * height)
             x = int(detection[3] * width)
