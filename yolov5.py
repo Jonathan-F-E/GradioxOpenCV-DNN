@@ -12,7 +12,7 @@ def load_yolo():
     colors = np.random.uniform(0, 255, size=(len(classes), 3))
     return net, classes, colors
 
-def resize_max_height(img, max_height=500):
+def resize_max_height(img, max_height=720):
     h, w = img.shape[:2]
     if h <= max_height:
         return img
@@ -20,7 +20,7 @@ def resize_max_height(img, max_height=500):
     new_w = int(w * scale)
     return cv2.resize(img, (new_w, max_height), interpolation=cv2.INTER_AREA)
 
-def load_image(img_path, max_height=500):
+def load_image(img_path, max_height=720):
     img = cv2.imread(img_path)
     img = resize_max_height(img, max_height=max_height)
     height, width, channels = img.shape
